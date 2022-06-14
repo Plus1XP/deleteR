@@ -12,6 +12,50 @@ struct ContentView: View {
     @State private var editMode: EditMode = .inactive
     @State private var selection: Set<String> = []
     @State private var searchQuery: String = ""
+    @State private var deleteContact: String = ""
+    @State private var confirmDeletion: Bool = false
+    
+    private var navigationTitle: Text {
+        switch editMode {
+        case .inactive:
+            return Text("\(contactsViewModel.contacts.count) Contacts")
+        case .transient:
+            return Text("Deleting...")
+        case .active:
+            return Text("\(selection.count) / \(contactsViewModel.contacts.count) Selected")
+        default:
+            return Text("\(contactsViewModel.contacts.count) Contacts")
+        }
+    }
+    
+    private var deleteContactsButtonLabel: Text {
+        if selection.isEmpty {
+            return Text("\(Image(systemName: "trash"))")
+        } else {
+            if selection.count == 1 {
+                return Text("\(Image(systemName: "trash")) Delete \(selection.count) contact")
+            } else {
+                return Text("\(Image(systemName: "trash")) Delete \(selection.count) contacts")
+            }
+            
+        }
+    }
+    
+    private var deleteAlertText: Text {
+        if selection.count == 1 {
+            return Text("Are you sure you want to delete \(selection.count) item?")
+        } else {
+            return Text("Are you sure you want to delete \(selection.count) items?")
+        }
+    }
+    
+    private var canDisableTrashButton: Bool {
+        if (editMode != .inactive && !selection.isEmpty) {
+            return false
+        } else {
+            return true
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -51,7 +95,7 @@ struct ContentView: View {
                                         let feedbackGenerator: UINotificationFeedbackGenerator? = UINotificationFeedbackGenerator()
                                         feedbackGenerator?.notificationOccurred(.error)
                                         contactsViewModel.deleteContact(id: [contact.identifier])
-                                        fetchContacts()
+                                        contactsViewModel.fetchContacts()
                                         selection.removeAll()
                                     }
                                 }
@@ -61,16 +105,33 @@ struct ContentView: View {
                 }
             }
             .listStyle(GroupedListStyle())
-            .navigationTitle(editMode == .inactive ? "\(contactsViewModel.contacts.count) Contacts" : "\(selection.count) / \(contactsViewModel.contacts.count) Selected")
+            .navigationTitle(navigationTitle)
             .environment(\.editMode, $editMode)
             .onAppear {
-                fetchContacts()
+                contactsViewModel.requestAccess()
             }
             .refreshable {
-                fetchContacts()
+                contactsViewModel.fetchContacts()
             }
             .searchable(text: $searchQuery, prompt: "Search Contacts")
             .disableAutocorrection(true)
+            .alert(isPresented: $confirmDeletion) {
+                Alert(title: deleteAlertText,
+                      primaryButton: .cancel() {
+                    selection.removeAll()
+                    editMode = .inactive
+                    confirmDeletion = false
+                },
+                      secondaryButton: .destructive(Text("Delete")) {
+                    let feedbackGenerator: UINotificationFeedbackGenerator? = UINotificationFeedbackGenerator()
+                    feedbackGenerator?.notificationOccurred(.error)
+                    contactsViewModel.deleteContact(id: Array(selection))
+                    contactsViewModel.fetchContacts()
+                    selection.removeAll()
+                    editMode = .inactive
+                    confirmDeletion = false
+                })
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
@@ -116,41 +177,20 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     Button(action: {
-                        let feedbackGenerator: UINotificationFeedbackGenerator? = UINotificationFeedbackGenerator()
-                        feedbackGenerator?.notificationOccurred(.error)
-                        contactsViewModel.deleteContact(id: Array(selection))
-                        fetchContacts()
-                        selection.removeAll()
-                        editMode = .inactive
+                        confirmDeletion = true
                     }) {
-                        Text(selection.isEmpty ? "\(Image(systemName: "trash"))" : "\(Image(systemName: "trash")) Delete \(selection.count) contacts")
-                            .foregroundColor(canDisableTrashLabel() ? Color.primary : Color.red)
+                        deleteContactsButtonLabel
+                            .foregroundColor(canDisableTrashButton ? Color.primary : Color.red)
                             .padding(7)
                             .background(.thinMaterial)
                             .cornerRadius(10)
                     }
-                    .disabled(canDisableTrashLabel())
+                    .disabled(canDisableTrashButton)
                 }
             }
         }
         // This fixes navigationBarTitle LayoutConstraints issue for NavigationView
         .navigationViewStyle(.stack)
-    }
-    
-    func fetchContacts() {
-        DispatchQueue.main.async {
-            contactsViewModel.fetchContacts()
-        }
-    }
-    
-    func canDisableTrashLabel() -> Bool {
-        var value: Bool = true
-        if editMode != .inactive {
-            if !selection.isEmpty {
-                value = false
-            }
-        }
-        return value
     }
 }
 
