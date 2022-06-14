@@ -116,7 +116,8 @@ struct ContentView: View {
             .searchable(text: $searchQuery, prompt: "Search Contacts")
             .disableAutocorrection(true)
             .alert(isPresented: $confirmDeletion) {
-                Alert(title: deleteAlertText,
+                Alert(title: Text("Confirm Deletion"),
+                      message: deleteAlertText,
                       primaryButton: .cancel() {
                     selection.removeAll()
                     editMode = .inactive

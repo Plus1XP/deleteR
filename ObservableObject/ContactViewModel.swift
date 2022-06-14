@@ -36,21 +36,22 @@ class ContactsViewModel: ObservableObject {
 
     func fetchContacts() -> Void {
         contacts.removeAll()
-        let key = [CNContactGivenNameKey,CNContactFamilyNameKey,CNContactPhoneNumbersKey,CNContactEmailAddressesKey, CNContactThumbnailImageDataKey] as [CNKeyDescriptor]
+        let key = [CNContactGivenNameKey,CNContactFamilyNameKey,CNContactPhoneNumbersKey,CNContactEmailAddressesKey, CNContactThumbnailImageDataKey, CNContactOrganizationNameKey] as [CNKeyDescriptor]
         let request = CNContactFetchRequest(keysToFetch: key)
         request.sortOrder = CNContactSortOrder.userDefault
         DispatchQueue.main.async {
             try? self.contactStore.enumerateContacts(with: request, usingBlock: { (contact, stoppingPointer) in
-                let givenName = contact.givenName
+                let givenName = contact.givenName != "" ? contact.givenName : contact.organizationName
                 let familyName = contact.familyName
                 let emailAddress = contact.emailAddresses.first?.value ?? ""
                 let phoneNumber: [String] = contact.phoneNumbers.map{ $0.value.stringValue }
-                let identifier = contact.identifier
+                let organizationName = contact.organizationName
                 var image = UIImage()
                 if contact.thumbnailImageData != nil {
                     image = UIImage(data: contact.thumbnailImageData!)!
                 }
-                self.contacts.append(ContactsModel(givenName: givenName, familyName: familyName, phoneNumber: phoneNumber, emailAddress: emailAddress as String, identifier: identifier, image: image))
+                let identifier = contact.identifier
+                self.contacts.append(ContactsModel(givenName: givenName, familyName: familyName, phoneNumber: phoneNumber, emailAddress: emailAddress as String, organizationName: organizationName, image: image, identifier: identifier))
                 debugPrint("\(givenName) \(familyName) \(identifier)")
             })
             self.sectionDictionary = self.getSectionedDictionary()
@@ -85,14 +86,27 @@ class ContactsViewModel: ObservableObject {
     }
     
     func getSectionedDictionary() -> Dictionary <String , [ContactsModel]> {
-            let sectionDictionary: Dictionary<String, [ContactsModel]> = {
-                return Dictionary(grouping: contacts, by: {
-                    let name = $0.givenName
-                    let normalizedName = name.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current)
-                    let firstChar = String(normalizedName.first!).uppercased()
-                    return firstChar
-                })
-            }()
-            return sectionDictionary
-        }
+        let sectionDictionary: Dictionary<String, [ContactsModel]> = {
+            return Dictionary(grouping: contacts, by: {
+                let name = $0.givenName
+                let organization = $0.organizationName
+                
+                var firstChar: String {
+                    if name != "" {
+                        let normalizedName = name.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current)
+                        return String(normalizedName.first!).uppercased()
+                    }
+                    if organization != "" {
+                        let normalizedOrganization = organization.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current)
+                        return String(normalizedOrganization.first!).uppercased()
+                    }
+                    else {
+                        return ""
+                    }
+                }
+                return firstChar
+            })
+        }()
+        return sectionDictionary
+    }
 }

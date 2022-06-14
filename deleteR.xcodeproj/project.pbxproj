@@ -27,6 +27,7 @@
 		2F6393212857FD2600BA2038 /* ContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
 		2F6393232857FD3A00BA2038 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		2F639325285802B900BA2038 /* deleteR (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "deleteR (iOS).entitlements"; sourceTree = "<group>"; };
+		2F6393262858E1B600BA2038 /* deleteR--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "deleteR--iOS--Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +51,7 @@
 		2F25663C2857B3A900FEBE5A = {
 			isa = PBXGroup;
 			children = (
+				2F6393262858E1B600BA2038 /* deleteR--iOS--Info.plist */,
 				2F639325285802B900BA2038 /* deleteR (iOS).entitlements */,
 				2F2566422857B3A900FEBE5A /* deleteRApp.swift */,
 				2F63931E2857FCD200BA2038 /* DataObject */,
@@ -347,6 +349,7 @@
 				DEVELOPMENT_TEAM = L4UU7WP4CE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "deleteR--iOS--Info.plist";
 				INFOPLIST_KEY_NSContactsUsageDescription = "deleteR needs to access your contacts in order to operate as intended.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -380,6 +383,7 @@
 				DEVELOPMENT_TEAM = L4UU7WP4CE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "deleteR--iOS--Info.plist";
 				INFOPLIST_KEY_NSContactsUsageDescription = "deleteR needs to access your contacts in order to operate as intended.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

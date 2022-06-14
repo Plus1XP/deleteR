@@ -12,15 +12,17 @@ struct ContactsModel {
     let familyName: String
     let phoneNumber: [String]
     let emailAddress: String
-    var identifier: String
+    var organizationName: String
     var image: UIImage
+    var identifier: String
 
-    init(givenName:String, familyName:String, phoneNumber:[String], emailAddress:String, identifier:String, image: UIImage) {
+    init(givenName: String, familyName: String, phoneNumber: [String], emailAddress: String, organizationName: String, image: UIImage, identifier: String) {
         self.givenName = givenName
         self.familyName = familyName
         self.phoneNumber = phoneNumber
         self.emailAddress = emailAddress
-        self.identifier = identifier
+        self.organizationName = organizationName
         self.image = image
+        self.identifier = identifier
     }
 }
