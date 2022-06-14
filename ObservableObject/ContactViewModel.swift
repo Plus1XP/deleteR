@@ -11,7 +11,7 @@ import SwiftUI
 class ContactsViewModel: ObservableObject {
     @Published var contacts = [ContactsModel]()
     @Published var sectionDictionary : Dictionary<String , [ContactsModel]> = [:]
-    let contactStore = CNContactStore()
+    private let contactStore = CNContactStore()
     
     func requestAccess() {
         switch CNContactStore.authorizationStatus(for: .contacts) {

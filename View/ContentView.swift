@@ -146,9 +146,9 @@ struct ContentView: View {
                     }) {
                         Text(selection.isEmpty ? "Select All" : "Deselect All")
                             .foregroundColor(editMode == .inactive ? Color.primary : Color.blue)
-                            .padding(7)
-                            .background(.thinMaterial)
-                            .cornerRadius(10)
+//                            .padding(7)
+//                            .background(.thinMaterial)
+//                            .cornerRadius(10)
                     }
                     .disabled(editMode == .inactive ? true : false)
                 }
@@ -169,9 +169,9 @@ struct ContentView: View {
                         }
                     } label: {
                         Text(editMode == .inactive ? "Edit" : "Done")
-                            .padding(7)
-                            .background(.thinMaterial)
-                            .cornerRadius(10)
+//                            .padding(7)
+//                            .background(.thinMaterial)
+//                            .cornerRadius(10)
                     }
                 }
             }
@@ -182,9 +182,9 @@ struct ContentView: View {
                     }) {
                         deleteContactsButtonLabel
                             .foregroundColor(canDisableTrashButton ? Color.primary : Color.red)
-                            .padding(7)
-                            .background(.thinMaterial)
-                            .cornerRadius(10)
+//                            .padding(7)
+//                            .background(.thinMaterial)
+//                            .cornerRadius(10)
                     }
                     .disabled(canDisableTrashButton)
                 }
