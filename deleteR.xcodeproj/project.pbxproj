@@ -15,6 +15,9 @@
 		2F2566572857B3AB00FEBE5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F2566442857B3AB00FEBE5A /* Assets.xcassets */; };
 		2F6393222857FD2600BA2038 /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6393212857FD2600BA2038 /* ContactModel.swift */; };
 		2F6393242857FD3A00BA2038 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6393232857FD3A00BA2038 /* ContactViewModel.swift */; };
+		2F639329285A146C00BA2038 /* MockAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F639328285A146C00BA2038 /* MockAssets.xcassets */; };
+		2F63932A285A146C00BA2038 /* MockAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F639328285A146C00BA2038 /* MockAssets.xcassets */; };
+		2F89811C285A18FA00DCE7D2 /* MockContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F89811B285A18FA00DCE7D2 /* MockContactModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,8 @@
 		2F6393232857FD3A00BA2038 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		2F639325285802B900BA2038 /* deleteR (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "deleteR (iOS).entitlements"; sourceTree = "<group>"; };
 		2F6393262858E1B600BA2038 /* deleteR--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "deleteR--iOS--Info.plist"; sourceTree = "<group>"; };
+		2F639328285A146C00BA2038 /* MockAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MockAssets.xcassets; sourceTree = "<group>"; };
+		2F89811B285A18FA00DCE7D2 /* MockContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContactModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				2F2566442857B3AB00FEBE5A /* Assets.xcassets */,
+				2F639328285A146C00BA2038 /* MockAssets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -92,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				2F6393212857FD2600BA2038 /* ContactModel.swift */,
+				2F89811B285A18FA00DCE7D2 /* MockContactModel.swift */,
 			);
 			path = DataObject;
 			sourceTree = "<group>";
@@ -191,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F639329285A146C00BA2038 /* MockAssets.xcassets in Resources */,
 				2F2566562857B3AB00FEBE5A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F63932A285A146C00BA2038 /* MockAssets.xcassets in Resources */,
 				2F2566572857B3AB00FEBE5A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +222,7 @@
 				2F2566542857B3AB00FEBE5A /* ContentView.swift in Sources */,
 				2F6393242857FD3A00BA2038 /* ContactViewModel.swift in Sources */,
 				2F2566522857B3AB00FEBE5A /* deleteRApp.swift in Sources */,
+				2F89811C285A18FA00DCE7D2 /* MockContactModel.swift in Sources */,
 				2F6393222857FD2600BA2038 /* ContactModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +360,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "deleteR--iOS--Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSContactsUsageDescription = "deleteR needs to access your contacts in order to operate as intended.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -384,6 +395,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "deleteR--iOS--Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSContactsUsageDescription = "deleteR needs to access your contacts in order to operate as intended.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -81,7 +81,7 @@ struct ContentView: View {
                                     Spacer()
                                     Image(uiImage: contact.image)
                                         .resizable()
-                                        .aspectRatio(contentMode: .fit)
+                                        .aspectRatio(contentMode: .fill)
                                         .frame(width: 40, height: 40)
                                         .clipShape(Circle())
 //                                        .overlay(

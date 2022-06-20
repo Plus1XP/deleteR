@@ -10,8 +10,10 @@ import SwiftUI
 
 class ContactsViewModel: ObservableObject {
     @Published var contacts = [ContactsModel]()
-    @Published var sectionDictionary : Dictionary<String , [ContactsModel]> = [:]
+    @Published var sectionDictionary : Dictionary <String, [ContactsModel]> = [:]
+    private var mockContactModel = MockContactModel()
     private let contactStore = CNContactStore()
+    private var isDebug: Bool = false
     
     func requestAccess() {
         switch CNContactStore.authorizationStatus(for: .contacts) {
@@ -35,26 +37,31 @@ class ContactsViewModel: ObservableObject {
     }
 
     func fetchContacts() -> Void {
-        contacts.removeAll()
-        let key = [CNContactGivenNameKey,CNContactFamilyNameKey,CNContactPhoneNumbersKey,CNContactEmailAddressesKey, CNContactThumbnailImageDataKey, CNContactOrganizationNameKey] as [CNKeyDescriptor]
-        let request = CNContactFetchRequest(keysToFetch: key)
-        request.sortOrder = CNContactSortOrder.userDefault
-        DispatchQueue.main.async {
-            try? self.contactStore.enumerateContacts(with: request, usingBlock: { (contact, stoppingPointer) in
-                let givenName = contact.givenName != "" ? contact.givenName : contact.organizationName
-                let familyName = contact.familyName
-                let emailAddress = contact.emailAddresses.first?.value ?? ""
-                let phoneNumber: [String] = contact.phoneNumbers.map{ $0.value.stringValue }
-                let organizationName = contact.organizationName
-                var image = UIImage()
-                if contact.thumbnailImageData != nil {
-                    image = UIImage(data: contact.thumbnailImageData!)!
-                }
-                let identifier = contact.identifier
-                self.contacts.append(ContactsModel(givenName: givenName, familyName: familyName, phoneNumber: phoneNumber, emailAddress: emailAddress as String, organizationName: organizationName, image: image, identifier: identifier))
-                debugPrint("\(givenName) \(familyName) \(identifier)")
-            })
+        if isDebug {
+            contacts = mockContactModel.mockContacts()
             self.sectionDictionary = self.getSectionedDictionary()
+        } else {
+            contacts.removeAll()
+            let key = [CNContactGivenNameKey,CNContactFamilyNameKey,CNContactPhoneNumbersKey,CNContactEmailAddressesKey, CNContactThumbnailImageDataKey, CNContactOrganizationNameKey] as [CNKeyDescriptor]
+            let request = CNContactFetchRequest(keysToFetch: key)
+            request.sortOrder = CNContactSortOrder.userDefault
+            DispatchQueue.main.async {
+                try? self.contactStore.enumerateContacts(with: request, usingBlock: { (contact, stoppingPointer) in
+                    let givenName = contact.givenName != "" ? contact.givenName : contact.organizationName
+                    let familyName = contact.familyName
+                    let emailAddress = contact.emailAddresses.first?.value ?? ""
+                    let phoneNumber: [String] = contact.phoneNumbers.map{ $0.value.stringValue }
+                    let organizationName = contact.organizationName
+                    var image = UIImage()
+                    if contact.thumbnailImageData != nil {
+                        image = UIImage(data: contact.thumbnailImageData!)!
+                    }
+                    let identifier = contact.identifier
+                    self.contacts.append(ContactsModel(givenName: givenName, familyName: familyName, phoneNumber: phoneNumber, emailAddress: emailAddress as String, organizationName: organizationName, image: image, identifier: identifier))
+                    debugPrint("\(givenName) \(familyName) \(identifier)")
+                })
+                self.sectionDictionary = self.getSectionedDictionary()
+            }
         }
     }
     
