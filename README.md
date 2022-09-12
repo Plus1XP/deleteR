@@ -3,7 +3,7 @@ deleteR
 
 deleteR is an open source application to mass delete contacts for iOS & macOS.
 
-Contact Deleter is the easiest way to delete multiple contacts at once.
+deleteR is the easiest way to delete multiple contacts at once.
 You can delete a single contact with a swipe or you can delete multiple contacts at once.
 
 # Screenshots
