@@ -17,6 +17,8 @@
 		2F6393242857FD3A00BA2038 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6393232857FD3A00BA2038 /* ContactViewModel.swift */; };
 		2F639329285A146C00BA2038 /* MockAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F639328285A146C00BA2038 /* MockAssets.xcassets */; };
 		2F63932A285A146C00BA2038 /* MockAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F639328285A146C00BA2038 /* MockAssets.xcassets */; };
+		2F784A0E2866704E0018723C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F784A0D2866704E0018723C /* SettingsView.swift */; };
+		2F784A0F2866704E0018723C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F784A0D2866704E0018723C /* SettingsView.swift */; };
 		2F89811C285A18FA00DCE7D2 /* MockContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F89811B285A18FA00DCE7D2 /* MockContactModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +34,7 @@
 		2F639325285802B900BA2038 /* deleteR (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "deleteR (iOS).entitlements"; sourceTree = "<group>"; };
 		2F6393262858E1B600BA2038 /* deleteR--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "deleteR--iOS--Info.plist"; sourceTree = "<group>"; };
 		2F639328285A146C00BA2038 /* MockAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MockAssets.xcassets; sourceTree = "<group>"; };
+		2F784A0D2866704E0018723C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2F89811B285A18FA00DCE7D2 /* MockContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContactModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				2F2566432857B3A900FEBE5A /* ContentView.swift */,
+				2F784A0D2866704E0018723C /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,6 +226,7 @@
 				2F2566542857B3AB00FEBE5A /* ContentView.swift in Sources */,
 				2F6393242857FD3A00BA2038 /* ContactViewModel.swift in Sources */,
 				2F2566522857B3AB00FEBE5A /* deleteRApp.swift in Sources */,
+				2F784A0E2866704E0018723C /* SettingsView.swift in Sources */,
 				2F89811C285A18FA00DCE7D2 /* MockContactModel.swift in Sources */,
 				2F6393222857FD2600BA2038 /* ContactModel.swift in Sources */,
 			);
@@ -231,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F784A0F2866704E0018723C /* SettingsView.swift in Sources */,
 				2F2566552857B3AB00FEBE5A /* ContentView.swift in Sources */,
 				2F2566532857B3AB00FEBE5A /* deleteRApp.swift in Sources */,
 			);
@@ -355,7 +361,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "deleteR (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = L4UU7WP4CE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -390,7 +396,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "deleteR (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = L4UU7WP4CE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
